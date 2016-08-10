@@ -1,4 +1,9 @@
+var Sequelize = require('sequelize');
+var db = new Sequelize('postgres://localhost:5432/express_sequelize_review', { logging: false });
+
+
+
 module.exports = {
-    Tweet: require('./tweet'),
-    User: require('./user')
+    Tweet: Tweet,
+    User: User
 }

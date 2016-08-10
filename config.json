@@ -1,8 +1,0 @@
-{
-    "username": "fellowprep",
-    "password": "preppylife",
-    "database": "expresssequelizeprep",
-    "host": "localhost",
-    "dialect": "postgres",
-    "logging": false
-}
