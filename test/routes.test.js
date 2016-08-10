@@ -8,7 +8,7 @@ var expect = chai.expect;
 var Promise = require('bluebird');
 chai.use(require('chai-things'));
 
-describe('Tweet Routes', function () {
+xdescribe('Tweet Routes', function () {
     before(function () {
         return db.sync({force: true});
     });
