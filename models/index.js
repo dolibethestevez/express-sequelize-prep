@@ -17,6 +17,7 @@ var Tweet = db.define('tweet', {
       if (indexOfHash !== -1) {
         return text.slice(indexOfHash).split(' ');
       }
+      return [];
     }
   },
   instanceMethods: {
