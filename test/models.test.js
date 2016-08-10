@@ -1,9 +1,8 @@
 var chai = require('chai');
 var expect = chai.expect;
-var models = require('../models');
-var User = models.User;
-var Tweet = models.Tweet;
-var db = require('../models/database');
+var db = require('../models');
+var Tweet = db.model('tweet');
+var User = db.model('user');
 var Promise = require('bluebird');
 chai.use(require('chai-things'));
 

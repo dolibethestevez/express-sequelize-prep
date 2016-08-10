@@ -1,14 +1,14 @@
 var request = require('supertest');
 var app = require('../app');
-var Tweet = require('../models/tweet');
 var agent = request.agent(app);
-var db = require('../models/database');
+var db = require('../models');
+var Tweet = db.model('tweet');
 var chai = require('chai');
 var expect = chai.expect;
 var Promise = require('bluebird');
 chai.use(require('chai-things'));
 
-xdescribe('Tweet Routes', function () {
+describe('Tweet Routes', function () {
     before(function () {
         return db.sync({force: true});
     });
