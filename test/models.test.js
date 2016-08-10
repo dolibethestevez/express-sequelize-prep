@@ -88,10 +88,8 @@ describe('Tweet Model', function () {
             return Tweet.findOne({ where: { text: 'Let\'s go Patriots! #nfl #football' } })
             .then(function (pats) {
                 expect(pats.dateCreated.getFullYear()).to.equal(2016);
-                return pats.timeWarp();
-            })
-            .then(function (newPats) {
-                expect(newPats.dateCreated.getFullYear()).to.equal(1975);
+                pats.timeWarp = 'September 25, 1975';
+                expect(pats.dateCreated.getFullYear()).to.equal(1975);
             });
         });
 

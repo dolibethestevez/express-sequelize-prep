@@ -21,9 +21,9 @@ let Tweet = db.define('Tweet', {
       return this.text.match(regex);
     }
   },
-  instanceMethods: {
-    timeWarp: function () {
-      return this.update({ dateCreated: new Date('September 25, 1975') });
+  setterMethods: {
+    timeWarp: function (dateString) {
+      this.setDataValue('dateCreated', new Date(dateString));
     }
   },
   classMethods: {
