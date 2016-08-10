@@ -38,7 +38,7 @@ var mainTweetText = 'Hello world! This is my first tweet and I am pumped! #aweso
 describe('Tweet Model', function () {
 
   describe('Attributes', function () {
-    it('has a text field of type String', function (done) {
+    it('has a text field of type String', function () {
       return Tweet.create({
         text: mainTweetText
       })
