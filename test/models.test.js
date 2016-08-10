@@ -44,7 +44,6 @@ describe('Tweet Model', function () {
       })
       .then(function (savedTweet) {
         expect(savedTweet.text).to.equal(mainTweetText);
-        done();
       })
     });
 
