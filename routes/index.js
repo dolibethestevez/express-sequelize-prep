@@ -1,5 +1,5 @@
-let router = require('express').Router();
-let models = require('../models/');
-let Tweet = models.Tweet;
+var router = require('express').Router();
+var models = require('../models/');
+var Tweet = models.Tweet;
 
 module.exports = router;

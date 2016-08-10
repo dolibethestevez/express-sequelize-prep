@@ -1,16 +1,16 @@
-let chai = require('chai');
-let expect = chai.expect;
-let models = require('../models');
-let User = models.User;
-let Tweet = models.Tweet;
-let db = require('../models/database');
-let Promise = require('bluebird');
+var chai = require('chai');
+var expect = chai.expect;
+var models = require('../models');
+var User = models.User;
+var Tweet = models.Tweet;
+var db = require('../models/database');
+var Promise = require('bluebird');
 chai.use(require('chai-things'));
 
 before(function () {
     return db.sync({force: true});
 });
-let json;
+var json;
 before(function () {
     return User.create({
         name: 'Json Unger'
@@ -19,7 +19,7 @@ before(function () {
         json = j;
     })
 });
-let noPats;
+var noPats;
 before(function () {
     return Promise.all([
         Tweet.create({
@@ -34,7 +34,7 @@ before(function () {
     });
 });
 
-let mainTweetText = 'Hello world! This is my first tweet and I am pumped! #awesome #stellar #omg';
+var mainTweetText = 'Hello world! This is my first tweet and I am pumped! #awesome #stellar #omg';
 
 describe('Tweet Model', function () {
 
@@ -49,7 +49,7 @@ describe('Tweet Model', function () {
         });
 
         it('requires text', function () {
-            let tweet = Tweet.build({});
+            var tweet = Tweet.build({});
             return tweet.validate()
             .then(function (result) {
                 expect(result).to.be.an('object');
@@ -58,11 +58,11 @@ describe('Tweet Model', function () {
         });
 
         it('ensures tweets are no longer than 140 characters', function () {
-            let longText = 'This is a really long tweet to showcase that tweets should not be more than 140 characters long. I\'ve run out of things to say so goodbye now!';
-            let longTweet = Tweet.build({
+            var longText = 'This is a really long tweet to showcase that tweets should not be more than 140 characters long. I\'ve run out of things to say so goodbye now!';
+            var longTweet = Tweet.build({
                 text: longText
             });
-            let normalTweet = Tweet.build({
+            var normalTweet = Tweet.build({
                 text: 'This is a short tweet'
             })
             return Promise.all([longTweet.validate(), normalTweet.validate()])

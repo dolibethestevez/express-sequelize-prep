@@ -1,11 +1,11 @@
-let request = require('supertest');
-let app = require('../app');
-let Tweet = require('../models/tweet');
-let agent = request.agent(app);
-let db = require('../models/database');
-let chai = require('chai');
-let expect = chai.expect;
-let Promise = require('bluebird');
+var request = require('supertest');
+var app = require('../app');
+var Tweet = require('../models/tweet');
+var agent = request.agent(app);
+var db = require('../models/database');
+var chai = require('chai');
+var expect = chai.expect;
+var Promise = require('bluebird');
 chai.use(require('chai-things'));
 
 xdescribe('Tweet Routes', function () {
@@ -64,7 +64,7 @@ xdescribe('Tweet Routes', function () {
     });
 
     describe('GET /tweets/:id', function () {
-        let tweet;
+        var tweet;
         before(function () {
             tweet = Tweet.build({
                 text: 'This is a test #prep #express #sequelize'
@@ -103,7 +103,7 @@ xdescribe('Tweet Routes', function () {
     });
 
     describe('PUT /tweets/:id', function () {
-        let tweet;
+        var tweet;
         before(function () {
             return Tweet.findOne({ where: { text: 'Awesome new tweet' } })
             .then(function (_tweet) {
@@ -116,7 +116,7 @@ xdescribe('Tweet Routes', function () {
             .put('/tweets/'+tweet.id)
             .expect(200)
             .expect(function (res) {
-                let date = new Date(res.body.dateCreated);
+                var date = new Date(res.body.dateCreated);
                 expect(date).to.not.equal(tweet.dateCreated);
                 expect(date.getFullYear()).to.equal(1975);
             })

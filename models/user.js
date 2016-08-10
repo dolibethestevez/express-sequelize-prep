@@ -1,7 +1,7 @@
-let db = require('./database');
-let Sequelize = require('sequelize');
+var db = require('./database');
+var Sequelize = require('sequelize');
 
-let User = db.define('User', {
+var User = db.define('User', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
