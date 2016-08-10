@@ -37,8 +37,8 @@ var mainTweetText = 'Hello world! This is my first tweet and I am pumped! #aweso
 
 describe('Tweet Model', function () {
 
-  describe('Attributes', function (done) {
-    it('has a text field of type String', function () {
+  describe('Attributes', function () {
+    it('has a text field of type String', function (done) {
       return Tweet.create({
         text: mainTweetText
       })
@@ -74,7 +74,7 @@ describe('Tweet Model', function () {
     });
   });
   
-  xdescribe('Additional Model Properties', function () {
+  describe('Additional Model Properties', function () {
     it('has a virtual array of hashtags included in the tweet', function () {
       return Tweet.findOne({ where: { text: mainTweetText } })
       .then(function (tweet) {
@@ -84,35 +84,35 @@ describe('Tweet Model', function () {
       })
     });
 
-    it('has an instance method to make tweets seem created long ago', function () {
-      return Tweet.findOne({ where: { text: 'Let\'s go Patriots! #nfl #football' } })
-      .then(function (pats) {
-        expect(pats.dateCreated.getFullYear()).to.equal(2016);
-        return pats.timeWarp();
+    it('has an instance method to add a hashtag to the tweet', function () {
+      return Tweet.findOne({ where: { text: 'Sequelize is the best! #fsa #sql' } })
+      .then(function (tweet) {
+        expect(tweet.hashtags).to.not.include('#winning');
+        return tweet.addTag('winning');
       })
-      .then(function (newPats) {
-        expect(newPats.dateCreated.getFullYear()).to.equal(1975);
+      .then(function (tweet) {
+        expect(tweet.hashtags).to.include('#winning');
       });
     });
 
     it('has a class method which searches by hashtag', function () {
-      return Tweet.findByHashtag('#nfl')
+      return Tweet.findByHashtag('#fsa')
       .then(function (tweets) {
         expect(tweets).to.have.lengthOf(2);
-        expect(tweets).to.include.a.thing.with.property('text','Patriots suck #nfl #nyc');
-      })
+        expect(tweets).to.include.a.thing.with.property('text', 'Express is the best! #fsa #middleware');
+      });
     });
   });
 
-  xdescribe('Relations/Associations', function () {
+  describe('Relations/Associations', function () {
     it('belongs to a user', function () {
-      return noPats.setUser(json)
+      return expressTweet.setUser(testUser)
       .then(function () {
-        return Tweet.findOne({ where: { text: noPats.text }, include: { model: User } });
+        return Tweet.findOne({ where: { text: expressTweet.text }, include: { model: User } });
       })
       .then(function (tweet) {
-        expect(tweet.User).to.exist;
-        expect(tweet.User.name).to.equal('Json Unger');
+        expect(tweet.user).to.exist;
+        expect(tweet.user.name).to.equal('Checkpoint Acer');
       });
     });
   });
